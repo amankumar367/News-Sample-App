@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -42,4 +44,48 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // ViewModel
+    def vLifecycle = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$vLifecycle"
+    implementation "androidx.lifecycle:lifecycle-extensions:$vLifecycle"
+
+    //Rx Java
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.16'
+
+    // Dagger 2
+    def vDagger = '2.24'
+    implementation "com.google.dagger:dagger:$vDagger"
+    implementation "com.google.dagger:dagger-android-support:$vDagger"
+    kapt "com.google.dagger:dagger-compiler:$vDagger"
+    kapt "com.google.dagger:dagger-android-processor:$vDagger"
+
+    // Retrofit
+    def vRetrofit = '2.6.1'
+    implementation "com.squareup.retrofit2:retrofit:$vRetrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$vRetrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$vRetrofit"
+
+    // Room components
+    def vRoom = '2.2.6'
+    implementation "androidx.room:room-runtime:$vRoom"
+    implementation "androidx.room:room-ktx:$vRoom"
+    kapt "androidx.room:room-compiler:$vRoom"
+    androidTestImplementation "androidx.room:room-testing:$vRoom"
+
+    // Gson
+    def vGson = '2.8.6'
+    implementation "com.google.code.gson:gson:2.8.6"
+
+    // Stetho
+    def vStetho = '1.5.1'
+    implementation "com.facebook.stetho:stetho:$vStetho"
+    implementation "com.facebook.stetho:stetho-okhttp3:$vStetho"
+
+    // Material Desing
+    def vMaterial = '1.0.0'
+    implementation "com.google.android.material:material:$vMaterial"
+
+    kapt "com.android.databinding:compiler:3.1.4"
 }
