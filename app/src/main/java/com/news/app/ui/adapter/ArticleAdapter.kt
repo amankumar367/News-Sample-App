@@ -14,7 +14,7 @@ class ArticleAdapter(
 ) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
 
     interface OnItemCLickListener {
-        fun onItemClick(repoView: Article)
+        fun onItemClick(article: Article)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -40,6 +40,7 @@ class ArticleAdapter(
 
         fun bind(article: Article) {
             viewBinding.data = article
+            viewBinding.listener = onItemCLickListener
         }
 
     }

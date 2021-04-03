@@ -1,9 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.articles.ArticleDetailsActivity">
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="data"
+            type="com.news.app.data.Article" />
+
+        <import type="com.news.app.utils.BindingUtils" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_image"
+        tools:context=".ui.articles.ArticleDetailsActivity">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            bind:articleUrl="@{data.url}"
+            bind:url="@{data.urlToImage}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:padding="7dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bg_black_transparent_circle"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_arrow_white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/glHorizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent=".5" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/Text.Bold.RobotoSlab.xLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="24dp"
+                    android:text="@{data.title}"
+                    app:layout_constraintTop_toBottomOf="@+id/glHorizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="Tesla surpreende com novo recorde de vendas" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSourceName"
+                    style="@style/Text.Regular.RobotoSlab.Large"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="24dp"
+                    android:layout_marginTop="64dp"
+                    android:text="@{data.author}"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvPublishDate"
+                    tools:text="Alfredo Lavrador"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPublishDate"
+                    style="@style/Text.Regular.RobotoSlab.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="24dp"
+                    android:layout_marginTop="64dp"
+                    android:text="@{BindingUtils.formatDate(data.publishedAt)}"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="2021-04-03"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDescription"
+                    style="@style/Text.Regular.RobotoSlab.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="24dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="@{data.description}"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSourceName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0"
+                    tools:text="A Tesla conseguiu incrementar o volume de vendas quando os seus principais rivais caíram. Num mercado global que recuou 14,2%, o construtor americano de eléctricos vendeu quase 185 mil veículos."/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

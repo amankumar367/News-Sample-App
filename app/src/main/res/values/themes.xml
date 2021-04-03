@@ -20,4 +20,8 @@
         <item name="android:windowIsTranslucent">true</item> // Remove blank screen before splash screen with material design theme
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
+
+    <style name="AppTheme.TransparentBar" parent="AppTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 </resources>

@@ -2,6 +2,7 @@ package com.news.app.data
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -34,6 +35,6 @@ data class Article(
 ): Parcelable {
     @IgnoredOnParcel
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "_id")
-    var id: Int = 0
+    @ColumnInfo(name = "articleId")
+    var articleId: Int = 0
 }

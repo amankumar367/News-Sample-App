@@ -11,7 +11,7 @@
 
         <import type="android.view.View" />
     </data>
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -20,17 +20,31 @@
         android:background="@color/black464646"
         tools:context=".ui.articles.ArticleActivity">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHeaderTitle"
+            style="@style/Text.Bold.RobotoSlab.xLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:gravity="center"
+            android:letterSpacing=".15"
+            android:paddingVertical="14dp"
+            android:text="@string/header_headlines"
+            android:elevation="6dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvArticles"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginVertical="12dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_height="0dp"
             android:visibility="@{showProgress ? View.GONE : View.VISIBLE , default = gone}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeaderTitle"
             tools:itemCount="5"
             tools:listitem="@layout/layout_articles" />
 
@@ -48,14 +62,12 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvErrorMessage"
-            style="@style/Text.Bold.RobotoSlab"
+            style="@style/Text.Bold.RobotoSlab.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/error_message"
-            android:textColor="@color/white"
-            android:textSize="25sp"
             android:gravity="center"
             android:paddingHorizontal="20dp"
+            android:text="@string/error_message"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

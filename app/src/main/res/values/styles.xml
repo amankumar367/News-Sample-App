@@ -3,15 +3,37 @@
 
     <!-- Bold.RobotoSlab -->
     <style name="Text.Bold.RobotoSlab" parent="TextAppearance.AppCompat.Large">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/roboto_slab_bold</item>
+    </style>
+
+    <style name="Text.Bold.RobotoSlab.xLarge" parent="Text.Bold.RobotoSlab">
+        <item name="android:textSize">29sp</item>
+    </style>
+
+    <style name="Text.Bold.RobotoSlab.Medium" parent="Text.Bold.RobotoSlab">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Text.Bold.RobotoSlab.Small" parent="Text.Bold.RobotoSlab">
+        <item name="android:textSize">12sp</item>
     </style>
 
     <!-- Regular.RobotoSlab -->
     <style name="Text.Regular.RobotoSlab" parent="TextAppearance.AppCompat.Small">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/roboto_slab_regular</item>
+    </style>
+
+    <style name="Text.Regular.RobotoSlab.Small" parent="Text.Regular.RobotoSlab">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text.Regular.RobotoSlab.Medium" parent="Text.Regular.RobotoSlab">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Text.Regular.RobotoSlab.Large" parent="Text.Regular.RobotoSlab">
+        <item name="android:textSize">20sp</item>
     </style>
 </resources>

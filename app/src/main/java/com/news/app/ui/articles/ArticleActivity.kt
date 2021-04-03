@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -81,8 +82,14 @@ class ArticleActivity : DaggerAppCompatActivity() {
 
     private fun setAdapter(articles: List<Article>) {
         viewBinding.rvArticles.adapter = ArticleAdapter(articles, object: ArticleAdapter.OnItemCLickListener {
-            override fun onItemClick(repoView: Article) {
-
+            override fun onItemClick(article: Article) {
+                val controller = AnimationUtils.loadLayoutAnimation(
+                        this@ArticleActivity,
+                        R.anim.layout_animation_fall_down
+                    )
+                viewBinding.rvArticles.layoutAnimation = controller
+                viewBinding.rvArticles.scheduleLayoutAnimation()
+                ArticleDetailsActivity.start(this@ArticleActivity, article)
             }
         })
     }
