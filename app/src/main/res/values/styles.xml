@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Bold.RobotoSlab -->
+    <style name="Text.Bold.RobotoSlab" parent="TextAppearance.AppCompat.Large">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_slab_bold</item>
+    </style>
+
+    <!-- Regular.RobotoSlab -->
+    <style name="Text.Regular.RobotoSlab" parent="TextAppearance.AppCompat.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_slab_regular</item>
+    </style>
+</resources>

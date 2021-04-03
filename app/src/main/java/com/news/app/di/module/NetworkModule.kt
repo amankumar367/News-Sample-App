@@ -7,6 +7,7 @@ import com.news.app.network.interceptor.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,10 +30,15 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addNetworkInterceptor(StethoInterceptor())
-            .addInterceptor(NetworkInterceptor())
-            .build()
+        val httpClient = OkHttpClient.Builder()
+        httpClient.addNetworkInterceptor(StethoInterceptor())
+        httpClient.addInterceptor(NetworkInterceptor())
+        if (BuildConfig.DEBUG){
+            val logging = HttpLoggingInterceptor()
+            logging.level = HttpLoggingInterceptor.Level.BODY   // set your desired log level
+            httpClient.addInterceptor(logging)  // <-- this is the important line!
+        }
+        return httpClient.build()
     }
 
     @Provides
