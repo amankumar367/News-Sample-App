@@ -17,6 +17,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "NEWS_API_KEY", "\"${getProperty("local.properties", "NEWS_API_KEY")}\""
+        buildConfigField "String", "BASE_URL", '"https://newsapi.org/v2/"'
     }
 
     buildTypes {
@@ -62,10 +64,11 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$vDagger"
 
     // Retrofit
-    def vRetrofit = '2.6.1'
+    def vRetrofit = '2.9.0'
     implementation "com.squareup.retrofit2:retrofit:$vRetrofit"
     implementation "com.squareup.retrofit2:converter-gson:$vRetrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$vRetrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.1"
 
     // Room components
     def vRoom = '2.2.6'
@@ -88,4 +91,19 @@ dependencies {
     implementation "com.google.android.material:material:$vMaterial"
 
     kapt "com.android.databinding:compiler:3.1.4"
+}
+
+def getProperty(String filename, String propName) {
+    def propsFile = rootProject.file(filename)
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        if (props[propName] != null) {
+            return props[propName]
+        } else {
+            print("No such property " + propName + " in file " + filename)
+        }
+    } else {
+        print(filename + " does not exist!")
+    }
 }

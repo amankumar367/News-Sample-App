@@ -1,10 +1,10 @@
 package com.news.app.ui.articles
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.news.app.R
+import dagger.android.support.DaggerAppCompatActivity
 
-class ArticleDetailsActivity : AppCompatActivity() {
+class ArticleDetailsActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_details)
