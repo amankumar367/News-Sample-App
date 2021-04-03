@@ -31,22 +31,24 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:onClick="@{() -> listener.onItemClick(data)}"
-            android:background="?android:attr/selectableItemBackground"
+            android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            tools:ignore="UnusedAttribute">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivHeadline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_image"
+                android:foreground="@drawable/bg_image"
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 bind:articleUrl="@{data.url}"
-                bind:url="@{data.urlToImage}"/>
+                bind:url="@{data.urlToImage}"
+                tools:ignore="UnusedAttribute" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/more_title"

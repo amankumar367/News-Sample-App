@@ -1,8 +1,6 @@
 package com.news.app.ui.articles
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.news.app.base.BaseViewModel
 import com.news.app.extensions.transform
 import com.news.app.repo.repointerface.IArticleRepo
@@ -23,10 +21,10 @@ class ArticleViewModel(
         MutableLiveData<ArticleState>()
     }
 
-    fun getArticles(query: String?, from: String?, sortBy: String?) {
+    fun getArticles(query: String?, from: String?, sortBy: String?, fetchFromNetwork: Boolean = false) {
         state = ArticleState.Loading
         disposables.add(
-            articleRepo.getArticles(query, from, sortBy)
+            articleRepo.getArticles(query, from, sortBy, fetchFromNetwork)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -37,9 +35,4 @@ class ArticleViewModel(
         )
     }
 
-    class Factory(private val articleRepo: IArticleRepo) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return ArticleViewModel(articleRepo) as T
-        }
-    }
 }

@@ -32,7 +32,7 @@ abstract class AppDatabase: RoomDatabase() {
                         context.applicationContext,
                         AppDatabase::class.java,
                         DATABASE_NAME
-                    ).build()
+                    ).allowMainThreadQueries().build()
                 }
             }
             Log.d(TAG, " >>> Getting the database instance")

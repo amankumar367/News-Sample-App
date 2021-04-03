@@ -58,7 +58,6 @@ class ArticleActivity : DaggerAppCompatActivity() {
                 is ArticleState.Error -> {
                     viewBinding.tvErrorMessage.text = it.message
                     viewBinding.showError = true
-                    viewBinding.showProgress = false
                 }
                 is ArticleState.UpdateUI -> {
                     viewBinding.showProgress = false
@@ -69,14 +68,19 @@ class ArticleActivity : DaggerAppCompatActivity() {
         })
     }
 
-    private fun loadData() {
-        viewModel.getArticles("tesla", "2021-03-03", "publishedAt")
+    private fun loadData(fetchFromNetwork: Boolean = false) {
+        viewModel.getArticles("tesla", "2021-03-03", "publishedAt", fetchFromNetwork)
     }
 
     private fun onClick() {
         viewBinding.btnRetry.setOnClickListener {
-            loadData()
+            loadData(true)
             viewBinding.showError = false
+        }
+
+        viewBinding.swipeRefresh.setOnRefreshListener {
+            loadData(true)
+            viewBinding.swipeRefresh.isRefreshing = false
         }
     }
 
