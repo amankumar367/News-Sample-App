@@ -22,6 +22,8 @@ class ArticleActivity : DaggerAppCompatActivity() {
 
     companion object {
         private const val TAG = "ArticleActivity"
+        private const val QUERY = "tesla"
+        private const val SORT_BY = "publishedAt"
         fun start(context: Context) {
             context.startActivity(Intent(context, ArticleActivity::class.java))
         }
@@ -55,13 +57,18 @@ class ArticleActivity : DaggerAppCompatActivity() {
     private fun setObserver() {
         viewModel.stateObservable.observe( this, Observer {
             when (it) {
-                ArticleState.Loading -> viewBinding.showProgress = true
+                ArticleState.Loading -> {
+                    if (viewBinding.swipeRefresh.isRefreshing.not())
+                        viewBinding.showProgress = true
+                }
                 is ArticleState.Error -> {
                     viewBinding.tvErrorMessage.text = it.message
                     viewBinding.showError = true
+                    viewBinding.swipeRefresh.isRefreshing = false
                 }
                 is ArticleState.UpdateUI -> {
                     viewBinding.showProgress = false
+                    viewBinding.swipeRefresh.isRefreshing = false
                     setAdapter(it.articles)
                 }
                 else -> { }
@@ -70,7 +77,7 @@ class ArticleActivity : DaggerAppCompatActivity() {
     }
 
     private fun loadData(fetchFromNetwork: Boolean = false) {
-        viewModel.getArticles("tesla", getCurrentDate(), "publishedAt", fetchFromNetwork)
+        viewModel.getArticles(QUERY, getCurrentDate(), SORT_BY, fetchFromNetwork)
     }
 
     private fun onClick() {
@@ -81,7 +88,6 @@ class ArticleActivity : DaggerAppCompatActivity() {
 
         viewBinding.swipeRefresh.setOnRefreshListener {
             loadData(true)
-            viewBinding.swipeRefresh.isRefreshing = false
         }
     }
 
