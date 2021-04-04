@@ -38,11 +38,15 @@ class ArticleRepo @Inject constructor(
                         response: Response<ArticleResponse>
                     ) {
                         if (response.body() != null && response.isSuccessful) {
-                            database.newsDao().deleteAllArticles() // delete past articles
                             val articles = response.body()?.articles ?: listOf()
-                            database.newsDao().insertArticles(articles) // insert latest articles
-                            emitter.onSuccess(articles)
-                            preferencesHelper.lastCacheTime = System.currentTimeMillis()
+                            if (articles.isNotEmpty()) {
+                                database.newsDao().deleteAllArticles() // delete past articles
+                                database.newsDao().insertArticles(articles) // insert latest articles
+                                emitter.onSuccess(articles)
+                                preferencesHelper.lastCacheTime = System.currentTimeMillis()
+                            } else {
+                                emitter.onSuccess(database.newsDao().getArticles())
+                            }
                         }
                     }
 

@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ApiInterface {
 
-    @GET("everything")
+    @GET("everything?language=en")
     fun getArticles(
         @Query("q") query: String?,
         @Query("from") from: String?,

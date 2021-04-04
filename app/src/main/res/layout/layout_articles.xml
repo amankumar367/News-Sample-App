@@ -28,6 +28,7 @@
         app:cardPreventCornerOverlap="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clItem"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:onClick="@{() -> listener.onItemClick(data)}"
@@ -51,7 +52,7 @@
                 tools:ignore="UnusedAttribute" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/more_title"
+                android:id="@+id/tvTitle"
                 style="@style/Text.Bold.RobotoSlab.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

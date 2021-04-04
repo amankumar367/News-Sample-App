@@ -13,6 +13,7 @@ import com.news.app.data.Article
 import com.news.app.databinding.ActivityArticleBinding
 import com.news.app.extensions.createFactory
 import com.news.app.extensions.getCurrentDate
+import com.news.app.extensions.showToast
 import com.news.app.repo.repointerface.IArticleRepo
 import com.news.app.ui.adapter.ArticleAdapter
 import dagger.android.support.DaggerAppCompatActivity
@@ -92,6 +93,7 @@ class ArticleActivity : DaggerAppCompatActivity() {
     }
 
     private fun setAdapter(articles: List<Article>) {
+        if (articles.isEmpty()) showToast(getString(R.string.no_data_found))
         viewBinding.rvArticles.adapter = ArticleAdapter(articles, object: ArticleAdapter.OnItemCLickListener {
             override fun onItemClick(article: Article) {
                 val controller = AnimationUtils.loadLayoutAnimation(

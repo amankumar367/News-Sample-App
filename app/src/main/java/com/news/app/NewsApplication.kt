@@ -10,6 +10,12 @@ import dagger.android.support.DaggerApplication
 class NewsApplication: DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication>? {
+        appComponent = DaggerAppComponent.builder().application(this).build()
+        return appComponent
+    }
+
+    override fun onCreate() {
+        super.onCreate()
 
         Log.d(TAG, ">>> NewsApplication Created")
 
@@ -18,9 +24,6 @@ class NewsApplication: DaggerApplication() {
             Stetho.initializeWithDefaults(this)
         }
 
-        appComponent = DaggerAppComponent.builder().application(this).build()
-
-        return appComponent
     }
 
     companion object {
