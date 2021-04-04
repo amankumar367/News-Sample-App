@@ -6,6 +6,8 @@
     <color name="background">#1c1e39</color>
     <color name="light_white">#f5f5f5</color>
     <color name="white">#FFFFFF</color>
+    <color name="whiteF2F2F2">#F2F2F2</color>
+    <color name="grayBABABA">#BABABA</color>
     <color name="black">#000000</color>
     <color name="black464646">#464646</color>
     <color name="pink">#e44248</color>

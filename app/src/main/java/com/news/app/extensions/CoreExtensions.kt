@@ -6,6 +6,8 @@ import java.io.InterruptedIOException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.net.ssl.SSLHandshakeException
 
 
@@ -26,4 +28,11 @@ fun Throwable.transform(): Exception {
         is SocketTimeoutException -> Exception("We are unable to connect to our servers. Please check your connection and try again.")
         else -> Exception("Something went wrong please try again.")
     }
+}
+
+
+fun getCurrentDate(): String {
+    val c: Date = Calendar.getInstance().time
+    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    return simpleDateFormat.format(c)
 }

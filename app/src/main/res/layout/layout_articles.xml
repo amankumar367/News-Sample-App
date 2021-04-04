@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:foreground="@drawable/bg_image"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -57,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="@{data.title}"
+                android:textColor="@color/whiteF2F2F2"
                 android:paddingHorizontal="12dp"
                 android:layout_marginBottom="24dp"
                 app:layout_constraintBottom_toTopOf="@+id/tvSourceName"
@@ -71,6 +72,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginBottom="12dp"
                 android:text="@{data.author}"
+                android:textColor="@color/grayBABABA"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="CNN" />
@@ -83,6 +85,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginBottom="12dp"
                 android:text="@{BindingUtils.formatDate(data.publishedAt)}"
+                android:textColor="@color/grayBABABA"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvSourceName"
                 tools:text="2021-03-03"/>

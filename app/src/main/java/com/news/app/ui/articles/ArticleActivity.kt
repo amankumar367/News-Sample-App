@@ -12,6 +12,7 @@ import com.news.app.R
 import com.news.app.data.Article
 import com.news.app.databinding.ActivityArticleBinding
 import com.news.app.extensions.createFactory
+import com.news.app.extensions.getCurrentDate
 import com.news.app.repo.repointerface.IArticleRepo
 import com.news.app.ui.adapter.ArticleAdapter
 import dagger.android.support.DaggerAppCompatActivity
@@ -69,7 +70,7 @@ class ArticleActivity : DaggerAppCompatActivity() {
     }
 
     private fun loadData(fetchFromNetwork: Boolean = false) {
-        viewModel.getArticles("tesla", "2021-03-03", "publishedAt", fetchFromNetwork)
+        viewModel.getArticles("tesla", getCurrentDate(), "publishedAt", fetchFromNetwork)
     }
 
     private fun onClick() {
