@@ -26,6 +26,7 @@ class ArticleActivityTest {
     companion object {
         private const val ITEM_BELOW_THE_FOLD = 3
     }
+
     @Rule
     @JvmField var mRuntimePermissionRule: GrantPermissionRule = GrantPermissionRule.grant(Manifest.permission.INTERNET)
 

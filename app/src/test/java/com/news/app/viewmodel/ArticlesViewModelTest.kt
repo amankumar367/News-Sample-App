@@ -6,6 +6,7 @@ import com.news.app.data.Article
 import com.news.app.extensions.getCurrentDate
 import com.news.app.factory.articles.ArticleFactory
 import com.news.app.repo.ArticleRepo
+import com.news.app.scheduler.RxJavaTestScheduler
 import com.news.app.ui.articles.ArticleState
 import com.news.app.ui.articles.ArticleViewModel
 import io.reactivex.Single
@@ -21,10 +22,13 @@ import org.mockito.MockitoAnnotations
 import com.nhaarman.mockitokotlin2.any
 
 @RunWith(JUnit4::class)
-class MovieListViewModelTest {
+class ArticlesViewModelTest {
 
     @get:Rule
     var instantExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    var scheduler: RxJavaTestScheduler = RxJavaTestScheduler()
 
     @Mock
     lateinit var articlesRepository: ArticleRepo
@@ -51,7 +55,7 @@ class MovieListViewModelTest {
         stubFetchArticles(Single.just(listOf()))
 
         // Act
-        articleViewModel.getArticles(QUERY, getCurrentDate(), SORT_BY)
+        articleViewModel.getArticles("", "", "")
 
         // Assert
         verify(stateObserver).onChanged(ArticleState.Loading)
@@ -64,7 +68,7 @@ class MovieListViewModelTest {
         stubFetchArticles(Single.error(TestingException(TestingException.GENERIC_EXCEPTION_MESSAGE)))
 
         // Act
-        articleViewModel.getArticles(QUERY, getCurrentDate(), SORT_BY)
+        articleViewModel.getArticles("", "", "")
 
         // Assert
         verify(stateObserver).onChanged(ArticleState.Loading)
@@ -75,9 +79,10 @@ class MovieListViewModelTest {
     fun fetchArticleList_returnsData() {
         // Arrange
         val listOfArticles = ArticleFactory.generateListOfArticle(10)
+        stubFetchArticles(Single.just(listOfArticles))
 
         // Act
-        articleViewModel.getArticles(QUERY, getCurrentDate(), SORT_BY)
+        articleViewModel.getArticles("", "", "")
 
         // Assert
         verify(stateObserver).onChanged(ArticleState.Loading)
@@ -89,18 +94,14 @@ class MovieListViewModelTest {
      * Stub Helpers Methods
      */
     private fun stubFetchArticles(single: Single<List<Article>>) {
-        `when`(articlesRepository.getArticles(any(), any(), any(), any()))
+        `when`(articlesRepository.getArticles("", "", "", false))
             .thenReturn(single)
     }
 
     class TestingException(message: String = GENERIC_EXCEPTION_MESSAGE) : Exception(message) {
         companion object {
-            const val GENERIC_EXCEPTION_MESSAGE = "Something error came while executing"
+            const val GENERIC_EXCEPTION_MESSAGE = "Something went wrong please try again."
         }
     }
 
-    companion object {
-        private const val QUERY = "tesla"
-        private const val SORT_BY = "publishedAt"
-    }
 }
