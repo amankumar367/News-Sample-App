@@ -3,12 +3,12 @@ package com.news.app.ui.articles
 import androidx.lifecycle.MutableLiveData
 import com.news.app.base.BaseViewModel
 import com.news.app.extensions.transform
-import com.news.app.repo.repointerface.IArticleRepo
+import com.news.app.data.repo.ArticleRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class ArticleViewModel(
-    private val articleRepo: IArticleRepo
+    private val articleRepo: ArticleRepository
 ): BaseViewModel<ArticleState>() {
 
     private var state: ArticleState = ArticleState.Init

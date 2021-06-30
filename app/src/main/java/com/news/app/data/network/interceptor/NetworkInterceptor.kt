@@ -1,4 +1,4 @@
-package com.news.app.network.interceptor
+package com.news.app.data.network.interceptor
 
 
 import com.news.app.BuildConfig

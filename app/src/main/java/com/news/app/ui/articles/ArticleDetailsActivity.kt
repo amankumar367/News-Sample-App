@@ -2,12 +2,10 @@ package com.news.app.ui.articles
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.news.app.R
-import com.news.app.data.Article
+import com.news.app.data.models.Article
 import com.news.app.databinding.ActivityArticleDetailsBinding
 import dagger.android.support.DaggerAppCompatActivity
 

@@ -1,9 +1,9 @@
-package com.news.app.room.dao
+package com.news.app.data.room.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.news.app.data.Article
+import com.news.app.data.models.Article
 
 @Dao
 interface NewsDao {

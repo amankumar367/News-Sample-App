@@ -1,6 +1,6 @@
-package com.news.app.network
+package com.news.app.data.network
 
-import com.news.app.data.ArticleResponse
+import com.news.app.data.models.ArticleResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

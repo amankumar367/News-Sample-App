@@ -1,6 +1,6 @@
 package com.news.app.factory.articles
 
-import com.news.app.data.Article
+import com.news.app.data.models.Article
 import com.news.app.factory.DataFactory
 
 object ArticleFactory {

@@ -1,6 +1,6 @@
 package com.news.app.ui.articles
 
-import com.news.app.data.Article
+import com.news.app.data.models.Article
 
 sealed class ArticleState {
     object Init : ArticleState()

@@ -1,11 +1,10 @@
-package com.news.app.repo
+package com.news.app.data.repo
 
-import com.news.app.data.Article
-import com.news.app.data.ArticleResponse
-import com.news.app.helper.PreferencesHelper
-import com.news.app.network.ApiInterface
-import com.news.app.repo.repointerface.IArticleRepo
-import com.news.app.room.database.AppDatabase
+import com.news.app.data.models.Article
+import com.news.app.data.models.ArticleResponse
+import com.news.app.utils.helper.PreferencesHelper
+import com.news.app.data.network.ApiInterface
+import com.news.app.data.room.database.AppDatabase
 import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,11 +16,11 @@ import javax.inject.Inject
  */
 const val EXPIRATION_TIME = (60 * 5 * 1000).toLong()
 
-class ArticleRepo @Inject constructor(
+class ArticleRepositoryImp @Inject constructor(
     var apiInterface: ApiInterface,
     var preferencesHelper: PreferencesHelper,
     var database: AppDatabase
-): IArticleRepo {
+): ArticleRepository {
 
     override fun getArticles(
         query: String?,

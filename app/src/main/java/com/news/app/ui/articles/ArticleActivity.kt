@@ -9,12 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.news.app.R
-import com.news.app.data.Article
+import com.news.app.data.models.Article
 import com.news.app.databinding.ActivityArticleBinding
 import com.news.app.extensions.createFactory
 import com.news.app.extensions.getCurrentDate
 import com.news.app.extensions.showToast
-import com.news.app.repo.repointerface.IArticleRepo
+import com.news.app.data.repo.ArticleRepository
 import com.news.app.ui.adapter.ArticleAdapter
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -31,7 +31,7 @@ class ArticleActivity : DaggerAppCompatActivity() {
     }
 
     @Inject
-    lateinit var articleRepo: IArticleRepo
+    lateinit var articleRepo: ArticleRepository
 
     private lateinit var viewModel: ArticleViewModel
 

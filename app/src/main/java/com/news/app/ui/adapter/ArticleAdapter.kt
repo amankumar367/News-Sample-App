@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.news.app.R
-import com.news.app.data.Article
+import com.news.app.data.models.Article
 import com.news.app.databinding.LayoutArticlesBinding
 
 class ArticleAdapter(

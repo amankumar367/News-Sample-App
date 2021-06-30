@@ -1,4 +1,4 @@
-package com.news.app.helper
+package com.news.app.utils.helper
 
 import android.app.Application
 import android.content.Context

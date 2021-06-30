@@ -1,12 +1,12 @@
-package com.news.app.room.database
+package com.news.app.data.room.database
 
 import android.content.Context
 import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.news.app.data.Article
-import com.news.app.room.dao.NewsDao
+import com.news.app.data.models.Article
+import com.news.app.data.room.dao.NewsDao
 
 @Database(entities = [
     Article::class

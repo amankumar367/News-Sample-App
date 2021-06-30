@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.news.app.data.Article" />
+            type="com.news.app.data.models.Article" />
 
         <variable
             name="listener"

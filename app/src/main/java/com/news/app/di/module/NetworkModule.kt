@@ -2,8 +2,8 @@ package com.news.app.di.module
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.news.app.BuildConfig
-import com.news.app.network.ApiInterface
-import com.news.app.network.interceptor.NetworkInterceptor
+import com.news.app.data.network.ApiInterface
+import com.news.app.data.network.interceptor.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
