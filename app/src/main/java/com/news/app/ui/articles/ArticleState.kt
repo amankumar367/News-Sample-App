@@ -6,5 +6,5 @@ sealed class ArticleState {
     object Init : ArticleState()
     object Loading : ArticleState()
     data class Error(var message: String?) : ArticleState()
-    data class UpdateUI(var articles: List<Article>) : ArticleState()
+    data class Success(var articles: List<Article>) : ArticleState()
 }

@@ -57,7 +57,7 @@ class ArticlesViewModelTest {
 
         // Assert
         verify(stateObserver).onChanged(ArticleState.Loading)
-        verify(stateObserver).onChanged(ArticleState.UpdateUI(listOf()))
+        verify(stateObserver).onChanged(ArticleState.Success(listOf()))
     }
 
     @Test
@@ -84,7 +84,7 @@ class ArticlesViewModelTest {
 
         // Assert
         verify(stateObserver).onChanged(ArticleState.Loading)
-        verify(stateObserver).onChanged(ArticleState.UpdateUI(listOfArticles))
+        verify(stateObserver).onChanged(ArticleState.Success(listOfArticles))
     }
 
 

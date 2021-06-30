@@ -9,9 +9,10 @@ import com.news.app.data.models.Article
 import com.news.app.databinding.LayoutArticlesBinding
 
 class ArticleAdapter(
-    private val listOfRepos: List<Article>,
     val onItemCLickListener: OnItemCLickListener
 ) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
+
+    private val listOfRepos: MutableList<Article> = mutableListOf()
 
     interface OnItemCLickListener {
         fun onItemClick(article: Article)
@@ -33,6 +34,12 @@ class ArticleAdapter(
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         holder.bind(listOfRepos[position])
+    }
+
+    fun updateList(articles: List<Article>) {
+        listOfRepos.clear()
+        listOfRepos.addAll(articles)
+        notifyDataSetChanged()
     }
 
     inner class ArticleViewHolder(private val viewBinding: LayoutArticlesBinding)
