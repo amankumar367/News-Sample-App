@@ -5,13 +5,13 @@ import io.reactivex.Single
 
 interface ArticleRepository {
 
-    fun getArticles(
+    val shouldFetchFromNetwork: Boolean
+
+    fun fetchArticles(
         query: String?,
         from: String?,
         sortBy: String?,
         fetchFromNetwork: Boolean
     ): Single<List<Article>>
-
-    fun shouldFetchFromNetwork(): Boolean
 
 }

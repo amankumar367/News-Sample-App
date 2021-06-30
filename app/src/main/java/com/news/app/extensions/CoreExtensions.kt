@@ -30,6 +30,11 @@ fun Throwable.transform(): Exception {
     }
 }
 
+class EmptyResultSetException(override val message: String = "No data found") : Exception()
+
+fun returnNoDataException(details: String = "No data found"): Nothing {
+    throw EmptyResultSetException(message = details)
+}
 
 fun getCurrentDate(): String {
     val c: Date = Calendar.getInstance().time

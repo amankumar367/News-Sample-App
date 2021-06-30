@@ -1,72 +1,53 @@
 package com.news.app.data.repo
 
 import com.news.app.data.models.Article
-import com.news.app.data.models.ArticleResponse
+import com.news.app.data.repo.network.ArticleNetworkManager
+import com.news.app.data.repo.persistence.ArticlePersistenceManager
 import com.news.app.utils.helper.PreferencesHelper
-import com.news.app.data.network.ApiInterface
-import com.news.app.data.room.database.AppDatabase
 import io.reactivex.Single
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 /**
  * Expiration time set to 5 minutes
  */
-const val EXPIRATION_TIME = (60 * 5 * 1000).toLong()
+const val EXPIRATION_TIME = (5 * 60 * 1000).toLong()
 
 class ArticleRepositoryImp @Inject constructor(
-    var apiInterface: ApiInterface,
-    var preferencesHelper: PreferencesHelper,
-    var database: AppDatabase
-): ArticleRepository {
+    private val articleNetworkManager: ArticleNetworkManager,
+    private val articlePersistenceManager: ArticlePersistenceManager,
+    private val preferencesHelper: PreferencesHelper
+) : ArticleRepository {
 
-    override fun getArticles(
+    override val shouldFetchFromNetwork: Boolean
+        get() {
+            val currentTime = System.currentTimeMillis()
+            val lastUpdateTime = preferencesHelper.lastCacheTime
+            return currentTime - lastUpdateTime > EXPIRATION_TIME
+        }
+
+    override fun fetchArticles(
         query: String?,
         from: String?,
         sortBy: String?,
         fetchFromNetwork: Boolean
     ): Single<List<Article>> {
 
-        return Single.create { emitter ->
-            if (shouldFetchFromNetwork() || fetchFromNetwork) {
-                apiInterface.getArticles(query, from, sortBy).enqueue(object: Callback<ArticleResponse> {
-                    override fun onResponse(
-                        call: Call<ArticleResponse>,
-                        response: Response<ArticleResponse>
-                    ) {
-                        if (response.body() != null && response.isSuccessful) {
-                            val articles = response.body()?.articles ?: listOf()
-                            if (articles.isNotEmpty()) {
-                                database.newsDao().deleteAllArticles() // delete past articles
-                                database.newsDao().insertArticles(articles) // insert latest articles
-                                emitter.onSuccess(articles)
-                                preferencesHelper.lastCacheTime = System.currentTimeMillis()
-                            } else {
-                                emitter.onSuccess(database.newsDao().getArticles())
-                            }
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
-                        if (database.newsDao().getArticles().isNotEmpty())
-                            emitter.onSuccess(database.newsDao().getArticles())
-                        else
-                            emitter.onError(t)
-                    }
-                })
-            } else {
-                emitter.onSuccess(database.newsDao().getArticles())
-            }
+        val queryMap = HashMap<String, String?>().apply {
+            put("q", query)
+            put("from", from)
+            put("sortBy", sortBy)
         }
 
-    }
+        return if (shouldFetchFromNetwork || fetchFromNetwork) {
+            articleNetworkManager.fetchArticle(queryMap).flatMap { articleResponse ->
+                val articles = articleResponse.articles ?: emptyList()
+                articlePersistenceManager.deleteAllArticles().blockingAwait()
+                val isArticleSaved = articlePersistenceManager.saveArticles(articles)
+                preferencesHelper.lastCacheTime = System.currentTimeMillis()
+                isArticleSaved.toSingleDefault(articles)
+            }
+        } else articlePersistenceManager.getArticles()
 
-    override fun shouldFetchFromNetwork(): Boolean {
-        val currentTime = System.currentTimeMillis()
-        val lastUpdateTime = preferencesHelper.lastCacheTime
-        return currentTime - lastUpdateTime > EXPIRATION_TIME
     }
 
 }

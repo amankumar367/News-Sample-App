@@ -24,7 +24,7 @@ class ArticleViewModel(
     fun getArticles(query: String?, from: String?, sortBy: String?, fetchFromNetwork: Boolean = false) {
         state = ArticleState.Loading
         disposables.add(
-            articleRepo.getArticles(query, from, sortBy, fetchFromNetwork)
+            articleRepo.fetchArticles(query, from, sortBy, fetchFromNetwork)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

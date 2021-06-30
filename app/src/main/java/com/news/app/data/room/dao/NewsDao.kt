@@ -4,17 +4,19 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.news.app.data.models.Article
+import io.reactivex.Completable
+import io.reactivex.Single
 
 @Dao
 interface NewsDao {
 
     @Insert
-    fun insertArticles(articles: List<Article>)
+    fun insertArticles(articles: List<Article>): Completable
 
     @Query("SELECT * FROM ARTICLE")
-    fun getArticles(): List<Article>
+    fun getArticles(): Single<List<Article>>
 
     @Query("DELETE FROM ARTICLE")
-    fun deleteAllArticles()
+    fun deleteAllArticles(): Completable
 
 }

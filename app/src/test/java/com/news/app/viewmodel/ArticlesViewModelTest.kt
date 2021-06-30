@@ -92,7 +92,7 @@ class ArticlesViewModelTest {
      * Stub Helpers Methods
      */
     private fun stubFetchArticles(single: Single<List<Article>>) {
-        `when`(articlesRepository.getArticles("", "", "", false))
+        `when`(articlesRepository.fetchArticles("", "", "", false))
             .thenReturn(single)
     }
 
