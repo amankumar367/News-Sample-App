@@ -3,6 +3,7 @@ package com.news.app.data.repo
 import com.news.app.data.models.Article
 import com.news.app.data.repo.network.ArticleNetworkManager
 import com.news.app.data.repo.persistence.ArticlePersistenceManager
+import com.news.app.extensions.returnNoDataException
 import com.news.app.utils.helper.PreferencesHelper
 import io.reactivex.Single
 import javax.inject.Inject
@@ -40,11 +41,18 @@ class ArticleRepositoryImp @Inject constructor(
 
         return if (shouldFetchFromNetwork || fetchFromNetwork) {
             articleNetworkManager.fetchArticle(queryMap).flatMap { articleResponse ->
-                val articles = articleResponse.articles ?: emptyList()
+                val articles = articleResponse.articles ?: returnNoDataException()
                 articlePersistenceManager.deleteAllArticles().blockingAwait()
                 val isArticleSaved = articlePersistenceManager.saveArticles(articles)
                 preferencesHelper.lastCacheTime = System.currentTimeMillis()
                 isArticleSaved.toSingleDefault(articles)
+            }.onErrorResumeNext {
+                articlePersistenceManager.getArticles().flatMap { list ->
+                    if (list.isNullOrEmpty())
+                        returnNoDataException(it.localizedMessage ?: "No data found")
+                    else
+                        Single.just(list)
+                }
             }
         } else articlePersistenceManager.getArticles()
 

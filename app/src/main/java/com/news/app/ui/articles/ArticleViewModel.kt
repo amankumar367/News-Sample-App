@@ -34,10 +34,7 @@ class ArticleViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ articles ->
-                    state = if (articles.isEmpty())
-                        ArticleState.Error("No data found")
-                    else
-                        ArticleState.Success(articles)
+                    state = ArticleState.Success(articles)
                 }, {
                     state = ArticleState.Error(it.transform().localizedMessage)
                 })
