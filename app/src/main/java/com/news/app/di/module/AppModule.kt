@@ -13,40 +13,34 @@ import com.news.app.extensions.ViewModelProviderFactory
 import com.news.app.ui.articles.ArticleViewModel
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.multibindings.IntoMap
 import javax.inject.Singleton
 
-@Module(includes = [RepositoryModule::class])
-abstract class AppModule {
+@Module
+interface AppModule {
 
     @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelProviderFactory): ViewModelProvider.Factory
+    @Singleton
+    fun provideArticleNetworkManager(
+        articleNetworkManager: ArticleNetworkManagerImp
+    ): ArticleNetworkManager
+
+    @Binds
+    @Singleton
+    fun provideArticlePersistenceManager(
+        articlePersistenceManager: ArticlePersistenceManagerImp
+    ): ArticlePersistenceManager
+
+    @Binds
+    @Singleton
+    fun provideArticleRepo(articleRepo: ArticleRepositoryImp): ArticleRepository
+
+    @Binds
+    fun bindViewModelFactory(factory: ViewModelProviderFactory): ViewModelProvider.Factory
 
     @Binds
     @IntoMap
     @ViewModelKey(ArticleViewModel::class)
-    abstract fun articleViewModel(viewModel: ArticleViewModel): ViewModel
-
-}
-
-@Module
-class RepositoryModule {
-
-    @Provides
-    @Singleton
-    fun provideArticleNetworkManager(
-        articleNetworkManager: ArticleNetworkManagerImp
-    ): ArticleNetworkManager = articleNetworkManager
-
-    @Provides
-    @Singleton
-    fun provideArticlePersistenceManager(
-        articlePersistenceManager: ArticlePersistenceManagerImp
-    ): ArticlePersistenceManager = articlePersistenceManager
-
-    @Provides
-    @Singleton
-    fun provideArticleRepo(articleRepo: ArticleRepositoryImp): ArticleRepository = articleRepo
+    fun articleViewModel(viewModel: ArticleViewModel): ViewModel
 
 }
