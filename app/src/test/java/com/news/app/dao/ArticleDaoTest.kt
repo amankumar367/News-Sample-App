@@ -2,7 +2,7 @@ package com.news.app.dao
 
 import androidx.room.Room
 import com.news.app.factory.articles.ArticleFactory
-import com.news.app.room.database.AppDatabase
+import com.news.app.data.room.database.AppDatabase
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

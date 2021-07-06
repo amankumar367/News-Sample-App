@@ -2,10 +2,9 @@ package com.news.app.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.news.app.data.Article
-import com.news.app.extensions.getCurrentDate
+import com.news.app.data.models.Article
 import com.news.app.factory.articles.ArticleFactory
-import com.news.app.repo.ArticleRepo
+import com.news.app.data.repo.ArticleRepositoryImp
 import com.news.app.scheduler.RxJavaTestScheduler
 import com.news.app.ui.articles.ArticleState
 import com.news.app.ui.articles.ArticleViewModel
@@ -19,7 +18,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
-import com.nhaarman.mockitokotlin2.any
 
 @RunWith(JUnit4::class)
 class ArticlesViewModelTest {
@@ -31,7 +29,7 @@ class ArticlesViewModelTest {
     var scheduler: RxJavaTestScheduler = RxJavaTestScheduler()
 
     @Mock
-    lateinit var articlesRepository: ArticleRepo
+    lateinit var articlesRepository: ArticleRepositoryImp
 
     @Mock
     private lateinit var stateObserver: Observer<ArticleState>
@@ -59,7 +57,7 @@ class ArticlesViewModelTest {
 
         // Assert
         verify(stateObserver).onChanged(ArticleState.Loading)
-        verify(stateObserver).onChanged(ArticleState.UpdateUI(listOf()))
+        verify(stateObserver).onChanged(ArticleState.Success(listOf()))
     }
 
     @Test
@@ -86,7 +84,7 @@ class ArticlesViewModelTest {
 
         // Assert
         verify(stateObserver).onChanged(ArticleState.Loading)
-        verify(stateObserver).onChanged(ArticleState.UpdateUI(listOfArticles))
+        verify(stateObserver).onChanged(ArticleState.Success(listOfArticles))
     }
 
 
@@ -94,7 +92,7 @@ class ArticlesViewModelTest {
      * Stub Helpers Methods
      */
     private fun stubFetchArticles(single: Single<List<Article>>) {
-        `when`(articlesRepository.getArticles("", "", "", false))
+        `when`(articlesRepository.fetchArticles("", "", "", false))
             .thenReturn(single)
     }
 

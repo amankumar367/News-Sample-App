@@ -1,4 +1,4 @@
-package com.news.app.data
+package com.news.app.data.models
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -39,7 +39,7 @@ data class Article(
     @ColumnInfo(name = "content")
     @SerializedName("content")
     var content: String? = null
-): Parcelable {
+) : Parcelable {
     @IgnoredOnParcel
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "articleId")

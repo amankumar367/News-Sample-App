@@ -1,4 +1,4 @@
-package com.news.app.helper
+package com.news.app.utils.helper
 
 import android.app.Application
 import android.content.Context
@@ -18,11 +18,8 @@ open class PreferencesHelper @Inject constructor(context: Application) {
         private const val PREF_KEY_LAST_CACHE = "last_cache"
     }
 
-    private val bufferPref: SharedPreferences
-
-    init {
-        bufferPref = context.getSharedPreferences(PREF_BUFFER_PACKAGE_NAME, Context.MODE_PRIVATE)
-    }
+    private val bufferPref: SharedPreferences =
+        context.getSharedPreferences(PREF_BUFFER_PACKAGE_NAME, Context.MODE_PRIVATE)
 
     /**
      * Store and retrieve the last time data was cached
