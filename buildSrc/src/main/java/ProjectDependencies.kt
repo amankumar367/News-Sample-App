@@ -1,12 +1,74 @@
 package dependencies
 
+object Version {
+
+    // android configuration
+    const val compileSdk = 31
+    const val minSdk = 21
+    const val targetSdk = 31
+
+    // Libraries
+    const val recyclerView = "1.0.0"
+    const val androidx = "1.0.0"
+    const val androidxAppCompact = "1.4.0"
+    const val constraintLayout = "2.1.2"
+    const val swipeRefreshLayout = "1.1.0"
+    const val androidx_100beta01 = "1.0.0-beta01"
+    const val circleImageView = "3.1.0"
+    const val firebaseCore = "17.4.4"
+    const val firebaseAnalytics = "18.0.0"
+    const val firebaseCrashlytics = "17.2.1"
+    const val firebaseCrashlyticsGradle = "2.2.1"
+    const val firebaseRemoteConfig = "19.1.4"
+    const val materialDesign = "1.4.0"
+    const val junit = "4.13.2"
+    const val mockitoCore = "2.28.2"
+    const val mockitoInline = "2.8.47"
+    const val mockitoKotlin = "2.2.0"
+    const val assertJCore = "3.2.0"
+    const val roomTesting = "1.1.1"
+    const val coreTesting = "1.1.1"
+    const val roboelectric = "4.2.1"
+    const val espressoCore = "3.4.0"
+    const val espressoContrib = "3.4.0"
+    const val rules = "1.4.0"
+    const val runner = "1.4.0"
+    const val navigation = "2.3.0"
+    const val dagger2 = "2.24"
+    const val lifecycleVersion = "2.0.0"
+    const val jacoco = "0.16.0"
+    const val jodaTime = "2.10.6"
+    const val picasso = "2.71828"
+    const val gradleVersion = "4.1.3"
+    const val googleServices = "4.3.3"
+    const val ktx = "1.7.0"
+    const val ktLint = "0.35.0"
+    const val kotlinVersion = "1.6.10"
+    const val legacySupport = "1.0.0"
+    const val dokkaVeresion = "0.9.18"
+    const val glide = "4.12.0"
+    const val gson = "2.8.6"
+    const val lifecycle = "1.1.1"
+    const val playCore = "1.7.0"
+    const val retrofit = "2.9.0"
+    const val retrofit_log = "4.7.1"
+    const val room = "2.2.6"
+    const val rx = "2.2.16"
+    const val rxAndroid = "2.1.1"
+    const val rxRelay = "2.0.0"
+    const val rxBinding = "3.0.0"
+    const val timber = "4.7.1"
+    const val message = "21.0.0"
+    const val play_services = "18.1.0"
+    const val play_plus = "17.0.0"
+    const val location = "17.1.0"
+
+    // plugins versions
+    const val detektVersion = "1.9.1"
+}
+
+
 object Dependencies {
-
-    // add your modules variables here
-    object Module {
-        const val core = ":core"
-    }
-
 
     object ClassPaths {
         const val gradleClasspath = "com.android.tools.build:gradle:${Version.gradleVersion}"
@@ -46,7 +108,6 @@ object Dependencies {
         const val location = "com.google.android.gms:play-services-location:${Version.location}"
         const val remoteConfig = "com.google.firebase:firebase-config:${Version.firebaseRemoteConfig}"
         const val playCore = "com.google.android.play:core:${Version.playCore}"
-
     }
 
     object Lifecycle {
@@ -54,44 +115,38 @@ object Dependencies {
         const val annotation_compliler = "android.arch.lifecycle:compiler:${Version.lifecycle}"
 
         // ViewModel and LiveData
-        const val lifeCycleExtension =
-            "androidx.lifecycle:lifecycle-extensions:${Version.lifecycleVersion}"
+        const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+        const val lifeCycleExtension = "androidx.lifecycle:lifecycle-extensions:${Version.lifecycleVersion}"
     }
 
     object Glide {
         const val glide = "com.github.bumptech.glide:glide:${Version.glide}"
-        const val annotationProcessor = "androidx.annotation:annotation:1.0.0"
         const val annotationCompiler = "com.github.bumptech.glide:compiler:${Version.glide}"
     }
 
-    object Gson {
-        const val gson = "com.google.code.gson:gson:${Version.gson}"
-    }
-
     object Kotlin {
-        const val kotlin_stdlib_jdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Version.kotlin}"
+        const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Version.kotlinVersion}"
     }
 
-    object OkHttp3 {
-        const val loggingInterceptor ="com.squareup.okhttp3:logging-interceptor:${Version.retrofit_log}"
-        const val okHttp3 = "com.squareup.okhttp3:okhttp:3.12.1"
-    }
-
-    object Retrofit2 {
-        const val adapterRxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Version.retrofit}"
-        const val converterGson = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
+    object Networking {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
+        const val converterGson = "com.squareup.retrofit2:converter-gson:${Version.retrofit}"
+        const val adapterRxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Version.retrofit}"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Version.retrofit_log}"
+        const val okHttp3 = "com.squareup.okhttp3:okhttp:3.12.1"
     }
 
     object AndroidX {
         const val fragment = "androidx.fragment:fragment:${Version.androidx}"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.4.0"
         const val annotation = "androidx.annotation:annotation:${Version.androidx}"
         const val core = "androidx.core:core:${Version.androidx}"
         const val coreKtx = "androidx.core:core-ktx:${Version.ktx}"
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Version.androidx_112}"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Version.constraintLayout}"
         const val materialDesign = "com.google.android.material:material:${Version.materialDesign}"
         const val support_recyclerview_v7 = "androidx.recyclerview:recyclerview:${Version.recyclerView}"
-        const val appcompat = "androidx.appcompat:appcompat:${Version.androidx_100beta01}"
+        const val appcompat = "androidx.appcompat:appcompat:${Version.androidxAppCompact}"
+        const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Version.swipeRefreshLayout}"
         const val vectordrawable = "androidx.vectordrawable:vectordrawable:${Version.androidx_100beta01}"
         const val legacySupport = "androidx.legacy:legacy-support-v4:${Version.legacySupport}"
         const val navigation = "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
@@ -100,8 +155,10 @@ object Dependencies {
 
     object Room {
         const val runtime = "androidx.room:room-runtime:${Version.room}"
-        const val rxjava2 = "androidx.room:room-rxjava2:${Version.room}"
-        const val annotationProcessor = "androidx.room:room-compiler:${Version.room}"
+        const val roomKtx = "androidx.room:room-ktx:${Version.room}"
+        const val roomRxJava2 = "androidx.room:room-rxjava2:${Version.room}"
+        const val roomCompiler = "androidx.room:room-compiler:${Version.room}"
+        const val roomTesting = "androidx.room:room-testing:${Version.room}"
     }
 
     object RxJava {
@@ -120,31 +177,26 @@ object Dependencies {
     }
 
     object Test {
-        const val test_junit = "androidx.test.ext:junit:${Version.androidXJunit}"
-        const val android_test_espresso_core ="androidx.test.espresso:espresso-core:${Version.espresso}"
-        const val android_test_room = "android.arch.persistence.room:testing:${Version.room}"
-        const val testing_core_testing = "android.arch.core:core-testing:${Version.lifecycle}"
-        const val android_test_rules = "androidx.test:rules:${Version.rules}"
-        const val android_test_runner = "androidx.test:runner:${Version.runner}"
-        const val mockito = "org.mockito:mockito-core:${Version.mockito}"
-        const val mockitoInLine = "org.mockito:mockito-inline:${Version.mockitoInline}"
-        const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Version.mockWebServer}"
-        const val assert_j = "org.assertj:assertj-core:${Version.assertJVersion}"
-        const val roboElectric = "org.robolectric:robolectric:${Version.roboElectric}"
+        /* Test Implementation */
+        const val junit = "junit:junit:${Version.junit}"
+        const val mockitoCore = "org.mockito:mockito-core:${Version.mockitoCore}"
+        const val mockitoInline = "org.mockito:mockito-inline:${Version.mockitoInline}"
+        const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Version.mockitoKotlin}"
+        const val assertJCore = "org.assertj:assertj-core:${Version.assertJCore}"
+        const val roomTesting = "android.arch.persistence.room:testing:${Version.roomTesting}"
+        const val coreTesting = "android.arch.core:core-testing:${Version.coreTesting}"
+        const val roboelectric = "org.robolectric:robolectric:${Version.roboelectric}"
+
+        /* Android Test Implementation */
+        const val espressoCore = "androidx.test.espresso:espresso-core:${Version.espressoCore}"
+        const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Version.espressoContrib}"
+        const val rules = "androidx.test:rules:${Version.rules}"
+        const val runner = "androidx.test:runner:${Version.runner}"
     }
 
-    object Support {
-        const val supportV4 = "com.android.support:support-v4:${Version.supportLib}"
-    }
+    const val gson = "com.google.code.gson:gson:${Version.gson}"
+    const val timber = "com.jakewharton.timber:timber:${Version.timber}"
+    const val jodaTime = "joda-time:joda-time:${Version.jodaTime}"
+    const val picasso = "com.squareup.picasso:picasso:${Version.picasso}"
 
-    object ThirdPartiesLib {
-        const val timber = "com.jakewharton.timber:timber:${Version.timber}"
-        const val jodaTime = "joda-time:joda-time:${Version.jodaTime}"
-        const val picasso = "com.squareup.picasso:picasso:${Version.picasso}"
-    }
-
-    const val javax = "javax.inject:javax.inject:${Version.javaxInject}"
-    const val javaxjsr250 = "javax.annotation:jsr250-api:${Version.javaxAnnotation}"
-    const val parceler = "org.parceler:parceler-api:${Version.parcelerVersion}"
-    const val parcelerProcessor = "org.parceler:parceler-api:${Version.parcelerVersion}"
 }
