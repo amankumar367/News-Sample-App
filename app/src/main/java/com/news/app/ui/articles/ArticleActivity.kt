@@ -3,10 +3,10 @@ package com.news.app.ui.articles
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.news.app.R
 import com.news.app.data.models.Article
@@ -71,14 +71,13 @@ class ArticleActivity : DaggerAppCompatActivity() {
     }
 
     private fun setObserver() {
-        viewModel.stateObservable.observe(this, Observer { state ->
+        viewModel.articleState.observe(this) { state ->
             when (state) {
                 ArticleState.Loading -> setLoadingState()
+                is ArticleState.Error -> setErrorState(state.error)
                 is ArticleState.Success -> setSuccessState(state)
-                is ArticleState.Error -> setErrorState(state)
-                else -> { }
             }
-        })
+        }
     }
 
     private fun setLoadingState() {
@@ -94,7 +93,8 @@ class ArticleActivity : DaggerAppCompatActivity() {
         hideNetworkError()
     }
 
-    private fun setErrorState(state: ArticleState.Error) {
+    private fun setErrorState(state: Throwable) {
+        Log.e(TAG, "Failed to fetch articles", state)
         binding.tvErrorMessage.text = state.message
         hideContent()
         hideLoading()
@@ -127,6 +127,7 @@ class ArticleActivity : DaggerAppCompatActivity() {
     }
 
     companion object {
+        private const val TAG = "ArticleActivity"
         private const val QUERY = "tesla"
         private const val SORT_BY = "publishedAt"
 

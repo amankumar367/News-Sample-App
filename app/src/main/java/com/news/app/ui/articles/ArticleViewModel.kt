@@ -1,26 +1,19 @@
 package com.news.app.ui.articles
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.news.app.base.BaseViewModel
-import com.news.app.extensions.transform
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.news.app.data.repo.ArticleRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ArticleViewModel @Inject constructor(
     private val articleRepo: ArticleRepository
-) : BaseViewModel<ArticleState>() {
+) : ViewModel() {
 
-    private var state: ArticleState = ArticleState.Init
-        set(value) {
-            field = value
-            publishState(value)
-        }
-
-    override val stateObservable: MutableLiveData<ArticleState> by lazy {
-        MutableLiveData<ArticleState>()
-    }
+    private var _articleState = MutableLiveData<ArticleState>()
+    val articleState: LiveData<ArticleState> = _articleState
 
     fun getArticles(
         query: String?,
@@ -28,17 +21,15 @@ class ArticleViewModel @Inject constructor(
         sortBy: String?,
         fetchFromNetwork: Boolean = false
     ) {
-        if (fetchFromNetwork.not()) state = ArticleState.Loading
-        disposables.add(
-            articleRepo.fetchArticles(query, from, sortBy, fetchFromNetwork)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ articles ->
-                    state = ArticleState.Success(articles)
-                }, {
-                    state = ArticleState.Error(it.transform().localizedMessage)
-                })
-        )
+        if (fetchFromNetwork.not()) _articleState.value = ArticleState.Loading
+        viewModelScope.launch {
+            try {
+                val articles = articleRepo.fetchArticles(query, from, sortBy, fetchFromNetwork)
+                _articleState.value = ArticleState.Success(articles)
+            } catch (exception: Exception) {
+                _articleState.value = ArticleState.Error(exception)
+            }
+        }
     }
 
 }

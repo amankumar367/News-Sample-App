@@ -63,6 +63,9 @@ object Version {
     const val play_plus = "17.0.0"
     const val location = "17.1.0"
 
+    const val coroutinesAndroid = "1.6.0"
+    const val coroutinesCore = "1.6.0"
+
     // plugins versions
     const val detektVersion = "1.9.1"
 }
@@ -166,6 +169,13 @@ object Dependencies {
         const val rxjava2 = "io.reactivex.rxjava2:rxjava:${Version.rx}"
         const val rxrelay2 = "com.jakewharton.rxrelay2:rxrelay:${Version.rxRelay}"
         const val rxBinding = "com.jakewharton.rxbinding3:rxbinding:${Version.rxBinding}"
+    }
+
+    object Coroutines {
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutinesAndroid}"
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutinesCore}"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutinesCore}"
+        const val rx2Interop = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${Version.coroutinesCore}"
     }
 
     object Dagger {

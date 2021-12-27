@@ -10,15 +10,25 @@ class ArticlePersistenceManagerImp @Inject constructor(
     private val database: AppDatabase
 ) : ArticlePersistenceManager {
 
-    override fun deleteAllArticles(): Completable {
-        return database.newsDao().deleteAllArticles()
+    override suspend fun deleteAllArticles(): Boolean {
+        return try {
+            database.newsDao().deleteAllArticles()
+            true
+        } catch (exception: Exception) {
+            false
+        }
     }
 
-    override fun saveArticles(articles: List<Article>): Completable {
-        return database.newsDao().insertArticles(articles)
+    override suspend fun updateArticles(articles: List<Article>): Boolean {
+        return try {
+            database.newsDao().updateArticles(articles)
+            true
+        } catch (exception: Exception) {
+            false
+        }
     }
 
-    override fun getArticles(): Single<List<Article>> {
+    override suspend fun getArticles(): List<Article> {
         return database.newsDao().getArticles()
     }
 
