@@ -1,15 +1,13 @@
 package com.news.app.data.repo.persistence
 
 import com.news.app.data.models.Article
-import io.reactivex.Completable
-import io.reactivex.Single
 
 interface ArticlePersistenceManager {
 
-    fun deleteAllArticles(): Completable
+    suspend fun deleteAllArticles(): Boolean
 
-    fun saveArticles(articles: List<Article>): Completable
+    suspend fun updateArticles(articles: List<Article>): Boolean
 
-    fun getArticles(): Single<List<Article>>
+    suspend fun getArticles(): List<Article>
 
 }

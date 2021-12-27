@@ -95,6 +95,10 @@ dependencies {
     implementation Dependencies.Networking.adapterRxjava2
     implementation Dependencies.Networking.loggingInterceptor
 
+    // Coroutines
+    implementation Dependencies.Coroutines.core
+    implementation Dependencies.Coroutines.android
+
     // Room components
     implementation Dependencies.Room.runtime
     implementation Dependencies.Room.roomKtx
