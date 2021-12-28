@@ -1,7 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 import dependencies.Dependencies
+import dependencies.Version
+
 buildscript {
-    ext.kotlin_version = "1.6.10"
+    ext.kotlin_version = Version.kotlinVersion
     repositories {
         google()
         jcenter()
@@ -9,6 +11,7 @@ buildscript {
     dependencies {
         classpath Dependencies.ClassPaths.gradleClasspath
         classpath Dependencies.ClassPaths.kotlinGradlePluginClasspath
+        classpath Dependencies.ClassPaths.daggerHiltClasspath
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

@@ -1,46 +1,33 @@
 package com.news.app.di.module
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.news.app.data.repo.ArticleRepository
 import com.news.app.data.repo.ArticleRepositoryImp
 import com.news.app.data.repo.network.ArticleNetworkManager
 import com.news.app.data.repo.network.ArticleNetworkManagerImp
 import com.news.app.data.repo.persistence.ArticlePersistenceManager
 import com.news.app.data.repo.persistence.ArticlePersistenceManagerImp
-import com.news.app.di.ViewModelKey
-import com.news.app.extensions.ViewModelProviderFactory
-import com.news.app.ui.articles.ArticleViewModel
 import dagger.Binds
 import dagger.Module
-import dagger.multibindings.IntoMap
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 interface AppModule {
-
     @Binds
     @Singleton
-    fun provideArticleNetworkManager(
+    fun bindArticleNetworkManager(
         articleNetworkManager: ArticleNetworkManagerImp
     ): ArticleNetworkManager
 
     @Binds
     @Singleton
-    fun provideArticlePersistenceManager(
+    fun bindArticlePersistenceManager(
         articlePersistenceManager: ArticlePersistenceManagerImp
     ): ArticlePersistenceManager
 
     @Binds
     @Singleton
-    fun provideArticleRepo(articleRepo: ArticleRepositoryImp): ArticleRepository
-
-    @Binds
-    fun bindViewModelFactory(factory: ViewModelProviderFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(ArticleViewModel::class)
-    fun articleViewModel(viewModel: ArticleViewModel): ViewModel
-
+    fun bindArticleRepoRepository(articleRepository: ArticleRepositoryImp): ArticleRepository
 }

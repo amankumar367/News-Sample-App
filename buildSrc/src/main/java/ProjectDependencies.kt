@@ -35,6 +35,7 @@ object Version {
     const val runner = "1.4.0"
     const val navigation = "2.3.0"
     const val dagger2 = "2.24"
+    const val daggerHilt = "2.40"
     const val lifecycleVersion = "2.0.0"
     const val jacoco = "0.16.0"
     const val jodaTime = "2.10.6"
@@ -81,6 +82,7 @@ object Dependencies {
         const val kotlinGradlePluginClasspath = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlinVersion}"
         const val dokkaPluginClasspath = "org.jetbrains.dokka:dokka-gradle-plugin:${Version.dokkaVeresion}"
         const val jacoco = "com.vanniktech:gradle-android-junit-jacoco-plugin:${Version.jacoco}"
+        const val daggerHiltClasspath = "com.google.dagger:hilt-android-gradle-plugin:${Version.daggerHilt}"
     }
 
     object Plugins {
@@ -184,6 +186,10 @@ object Dependencies {
         const val daggerAndroidSupport ="com.google.dagger:dagger-android-support:${Version.dagger2}"
         const val processor = "com.google.dagger:dagger-android-processor:${Version.dagger2}"
         const val compiler = "com.google.dagger:dagger-compiler:${Version.dagger2}"
+
+        /* Dagger Hilt */
+        const val hiltAndroid = "com.google.dagger:hilt-android:${Version.daggerHilt}"
+        const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Version.daggerHilt}"
     }
 
     object Test {

@@ -1,26 +1,24 @@
 package com.news.app.ui.articles
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.news.app.R
 import com.news.app.data.models.Article
 import com.news.app.databinding.ActivityArticleBinding
 import com.news.app.extensions.getCurrentDate
 import com.news.app.ui.adapter.ArticleAdapter
-import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class ArticleActivity : DaggerAppCompatActivity() {
+@AndroidEntryPoint
+class ArticleActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var vmFactory: ViewModelProvider.Factory
-    private val viewModel: ArticleViewModel by viewModels { vmFactory }
+    private val viewModel: ArticleViewModel by viewModels()
 
     private lateinit var binding: ActivityArticleBinding
     private lateinit var adapter: ArticleAdapter
@@ -60,7 +58,7 @@ class ArticleActivity : DaggerAppCompatActivity() {
                 )
                 binding.rvArticles.layoutAnimation = controller
                 binding.rvArticles.scheduleLayoutAnimation()
-                ArticleDetailsActivity.start(this@ArticleActivity, article)
+                ArticleDetailsActivity.launch(this@ArticleActivity, article)
             }
         })
         binding.rvArticles.adapter = adapter
@@ -131,7 +129,7 @@ class ArticleActivity : DaggerAppCompatActivity() {
         private const val QUERY = "tesla"
         private const val SORT_BY = "publishedAt"
 
-        fun start(context: Context) {
+        fun launch(context: Activity) {
             context.startActivity(Intent(context, ArticleActivity::class.java))
         }
     }

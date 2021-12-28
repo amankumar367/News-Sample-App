@@ -1,19 +1,21 @@
 package com.news.app.ui.articles
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.news.app.R
 import com.news.app.data.models.Article
 import com.news.app.databinding.ActivityArticleDetailsBinding
-import dagger.android.support.DaggerAppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-class ArticleDetailsActivity : DaggerAppCompatActivity() {
+@AndroidEntryPoint
+class ArticleDetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val BUNDLE_ARTICLE = "article"
-        fun start(context: Context, article: Article) {
+        fun launch(context: Activity, article: Article) {
             val intent = Intent(context, ArticleDetailsActivity::class.java)
             val bundle = Bundle()
             bundle.putParcelable(BUNDLE_ARTICLE, article)
