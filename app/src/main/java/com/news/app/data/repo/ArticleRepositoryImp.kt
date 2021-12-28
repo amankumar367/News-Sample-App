@@ -59,7 +59,7 @@ class ArticleRepositoryImp @Inject constructor(
             }
         } else persistenceManager.getArticles()
 
-        return articles
+        return if (articles.isNotEmpty()) articles else returnNoDataException()
     }
 
     companion object {

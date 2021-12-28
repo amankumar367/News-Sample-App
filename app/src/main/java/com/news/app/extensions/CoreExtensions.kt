@@ -26,6 +26,7 @@ fun Throwable.transform(): Exception {
         is ConnectException -> Exception("You're currently offline. Please check your network connection and try again.")
         is SSLHandshakeException,
         is SocketTimeoutException -> Exception("We are unable to connect to our servers. Please check your connection and try again.")
+        is EmptyResultSetException -> this
         else -> Exception("Something went wrong please try again.")
     }
 }
