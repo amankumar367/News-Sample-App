@@ -1,11 +1,11 @@
 package com.news.app.ui.articles
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.news.app.data.repo.ArticleRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,8 +14,8 @@ class ArticleViewModel @Inject constructor(
     private val articleRepo: ArticleRepository
 ) : ViewModel() {
 
-    private var _articleState = MutableLiveData<ArticleState>()
-    val articleState: LiveData<ArticleState> = _articleState
+    private var _articleState = MutableStateFlow<ArticleState>(ArticleState.Success(emptyList()))
+    val articleState: StateFlow<ArticleState> = _articleState
 
     fun getArticles(
         query: String?,
