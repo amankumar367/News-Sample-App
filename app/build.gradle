@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -79,25 +80,23 @@ dependencies {
     implementation Dependencies.Lifecycle.lifecycleViewModelKtx
     implementation Dependencies.Lifecycle.lifeCycleExtension
 
-    //Rx Java
+    // RxJava
     implementation Dependencies.RxJava.rxjava2
     implementation Dependencies.RxJava.rxAndroid
 
-    // Dagger 2
-    implementation Dependencies.Dagger.dagger2
-    implementation Dependencies.Dagger.daggerAndroidSupport
-    kapt Dependencies.Dagger.compiler
-    kapt Dependencies.Dagger.processor
+    // Coroutines
+    implementation Dependencies.Coroutines.core
+    implementation Dependencies.Coroutines.android
+
+    // Dagger Hilt
+    implementation Dependencies.Dagger.hiltAndroid
+    kapt Dependencies.Dagger.hiltCompiler
 
     // Retrofit
     implementation Dependencies.Networking.retrofit
     implementation Dependencies.Networking.converterGson
     implementation Dependencies.Networking.adapterRxjava2
     implementation Dependencies.Networking.loggingInterceptor
-
-    // Coroutines
-    implementation Dependencies.Coroutines.core
-    implementation Dependencies.Coroutines.android
 
     // Room components
     implementation Dependencies.Room.runtime

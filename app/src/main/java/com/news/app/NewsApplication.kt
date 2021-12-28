@@ -1,16 +1,12 @@
 package com.news.app
 
+import android.app.Application
 import android.util.Log
 import com.facebook.stetho.Stetho
-import com.news.app.di.DaggerAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
+import dagger.hilt.android.HiltAndroidApp
 
-class NewsApplication: DaggerApplication() {
-
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder().application(this).build()
-    }
+@HiltAndroidApp
+class NewsApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
