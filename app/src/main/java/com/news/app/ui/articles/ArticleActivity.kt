@@ -8,6 +8,9 @@ import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.news.app.R
 import com.news.app.data.models.Article
 import com.news.app.databinding.ActivityArticleBinding
@@ -29,7 +32,7 @@ class ArticleActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_article)
 
         setAdapter()
-        setObserver()
+        observeEvents()
         loadData()
         onClick()
 
@@ -69,12 +72,16 @@ class ArticleActivity : AppCompatActivity() {
         adapter.updateList(articles)
     }
 
-    private fun setObserver() {
-        viewModel.articleState.observe(this) { state ->
-            when (state) {
-                ArticleState.Loading -> setLoadingState()
-                is ArticleState.Error -> setErrorState(state.error)
-                is ArticleState.Success -> setSuccessState(state)
+    private fun observeEvents() {
+        lifecycleScope.launchWhenStarted {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.articleState.collect { state ->
+                    when (state) {
+                        ArticleState.Loading -> setLoadingState()
+                        is ArticleState.Error -> setErrorState(state.error)
+                        is ArticleState.Success -> setSuccessState(state)
+                    }
+                }
             }
         }
     }

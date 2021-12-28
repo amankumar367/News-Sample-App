@@ -1,8 +1,8 @@
 package com.news.app.utils.helper
 
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -10,7 +10,7 @@ import javax.inject.Singleton
  * General Preferences Helper class, used for storing preference values using the Preference API
  */
 @Singleton
-open class PreferencesHelper @Inject constructor(context: Application) {
+open class PreferencesHelper @Inject constructor(@ApplicationContext context: Context) {
 
     companion object {
         private const val PREF_BUFFER_PACKAGE_NAME = "com.news.app"

@@ -37,6 +37,8 @@ object Version {
     const val dagger2 = "2.24"
     const val daggerHilt = "2.40"
     const val lifecycleVersion = "2.0.0"
+    const val lifecycleViewModelKtx = "2.4.0"
+    const val lifecycleRuntimeKtx = "2.4.0"
     const val jacoco = "0.16.0"
     const val jodaTime = "2.10.6"
     const val picasso = "2.71828"
@@ -120,8 +122,9 @@ object Dependencies {
         const val annotation_compliler = "android.arch.lifecycle:compiler:${Version.lifecycle}"
 
         // ViewModel and LiveData
-        const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+        const val lifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.lifecycleViewModelKtx}"
         const val lifeCycleExtension = "androidx.lifecycle:lifecycle-extensions:${Version.lifecycleVersion}"
+        const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycleRuntimeKtx}"
     }
 
     object Glide {

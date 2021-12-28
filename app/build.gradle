@@ -79,6 +79,7 @@ dependencies {
     // ViewModel
     implementation Dependencies.Lifecycle.lifecycleViewModelKtx
     implementation Dependencies.Lifecycle.lifeCycleExtension
+    implementation Dependencies.Lifecycle.lifecycleRuntimeKtx
 
     // RxJava
     implementation Dependencies.RxJava.rxjava2
