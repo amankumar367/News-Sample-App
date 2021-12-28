@@ -12,6 +12,7 @@ import com.news.app.R
 import com.news.app.data.models.Article
 import com.news.app.databinding.ActivityArticleBinding
 import com.news.app.extensions.getCurrentDate
+import com.news.app.extensions.transform
 import com.news.app.ui.adapter.ArticleAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -93,7 +94,8 @@ class ArticleActivity : AppCompatActivity() {
 
     private fun setErrorState(state: Throwable) {
         Log.e(TAG, "Failed to fetch articles", state)
-        binding.tvErrorMessage.text = state.message
+        val errorMessage = state.transform().localizedMessage
+        binding.tvErrorMessage.text = errorMessage
         hideContent()
         hideLoading()
         showNetworkError()
