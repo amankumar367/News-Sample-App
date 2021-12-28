@@ -1,5 +1,6 @@
 package com.news.app.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -36,6 +37,7 @@ class ArticleAdapter(
         holder.bind(listOfRepos[position])
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(articles: List<Article>) {
         listOfRepos.clear()
         listOfRepos.addAll(articles)
