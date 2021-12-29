@@ -74,13 +74,11 @@ class ArticleActivity : AppCompatActivity() {
 
     private fun observeEvents() {
         lifecycleScope.launchWhenStarted {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.articleState.collect { state ->
-                    when (state) {
-                        ArticleState.Loading -> setLoadingState()
-                        is ArticleState.Error -> setErrorState(state.error)
-                        is ArticleState.Success -> setSuccessState(state)
-                    }
+            viewModel.articleState.collect { state ->
+                when (state) {
+                    ArticleState.Loading -> setLoadingState()
+                    is ArticleState.Error -> setErrorState(state.error)
+                    is ArticleState.Success -> setSuccessState(state)
                 }
             }
         }

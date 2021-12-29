@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.news.app.data.repo.ArticleRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
@@ -14,7 +15,10 @@ class ArticleViewModel @Inject constructor(
     private val articleRepo: ArticleRepository
 ) : ViewModel() {
 
-    private var _articleState = MutableSharedFlow<ArticleState>()
+    private var _articleState = MutableSharedFlow<ArticleState>(
+        replay = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
     val articleState: SharedFlow<ArticleState> = _articleState
 
     fun getArticles(
