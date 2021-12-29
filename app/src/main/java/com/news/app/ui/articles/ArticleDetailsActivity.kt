@@ -17,11 +17,9 @@ class ArticleDetailsActivity : AppCompatActivity() {
         private const val BUNDLE_ARTICLE = "article"
         fun launch(context: Activity, article: Article) {
             val intent = Intent(context, ArticleDetailsActivity::class.java)
-            val bundle = Bundle()
-            bundle.putParcelable(BUNDLE_ARTICLE, article)
-            intent.putExtras(bundle)
+            intent.putExtra(BUNDLE_ARTICLE, article)
             context.startActivity(intent)
-            (context as ArticleActivity).overridePendingTransition(R.anim.slide_up_animation, R.anim.fade_exit_transition)
+            context.overridePendingTransition(R.anim.slide_up_animation, R.anim.fade_exit_transition)
         }
     }
 
@@ -31,7 +29,9 @@ class ArticleDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_article_details)
 
-        val article: Article? = intent.extras?.getParcelable(BUNDLE_ARTICLE)
+        val article: Article = intent.getParcelableExtra(BUNDLE_ARTICLE)
+            ?: throw Error("Article details are required to launch")
+
         viewBinding.data = article
 
         viewBinding.ivBack.setOnClickListener { onBackPressed() }
