@@ -8,10 +8,10 @@ import androidx.room.RoomDatabase
 import com.news.app.data.models.Article
 import com.news.app.data.room.dao.NewsDao
 
-@Database(entities = [
-    Article::class
-], version = 1, exportSchema = false)
-abstract class AppDatabase: RoomDatabase() {
+@Database(
+    entities = [Article::class], version = 1, exportSchema = false
+)
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun newsDao(): NewsDao
 
