@@ -109,11 +109,6 @@ dependencies {
     // Gson
     implementation Dependencies.gson
 
-    // Stetho
-    def vStetho = '1.5.1'
-    implementation "com.facebook.stetho:stetho:$vStetho"
-    implementation "com.facebook.stetho:stetho-okhttp3:$vStetho"
-
     // Image Loading and Caching
     implementation Dependencies.Glide.glide
     annotationProcessor Dependencies.Glide.annotationCompiler

@@ -1,6 +1,5 @@
 package com.news.app.di.module
 
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.news.app.BuildConfig
 import com.news.app.data.network.ApiInterface
 import com.news.app.data.network.interceptor.NetworkInterceptor
@@ -34,7 +33,6 @@ class NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
-        httpClient.addNetworkInterceptor(StethoInterceptor())
         httpClient.addInterceptor(NetworkInterceptor())
         if (BuildConfig.DEBUG){
             val logging = HttpLoggingInterceptor()
