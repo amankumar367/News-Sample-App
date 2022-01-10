@@ -7,4 +7,5 @@
     <string name="header_headlines">HEADLINES</string>
 
     <string name="no_data_found">No data found</string>
+    <string name="title_activity_empty_compose">EmptyComposeActivity</string>
 </resources>

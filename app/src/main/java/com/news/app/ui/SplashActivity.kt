@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         ivSplash.startAnimation(animationFadeIn)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            ArticleActivity.launch(this)
+            EmptyComposeActivity.launch(this)
         }, 2000)
     }
 }

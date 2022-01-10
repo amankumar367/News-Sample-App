@@ -27,7 +27,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.articles.ArticleActivity" />
-        <activity android:name=".ui.articles.ArticleDetailsActivity"/>
+        <activity android:name=".ui.articles.ArticleDetailsActivity" />
+        <activity
+            android:name=".ui.EmptyComposeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_empty_compose"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
