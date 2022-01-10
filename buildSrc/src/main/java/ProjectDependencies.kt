@@ -8,13 +8,15 @@ object Version {
     const val targetSdk = 31
 
     // Libraries
-    const val recyclerView = "1.0.0"
     const val androidx = "1.0.0"
     const val androidxAppCompact = "1.4.0"
-    const val constraintLayout = "2.1.2"
-    const val swipeRefreshLayout = "1.1.0"
     const val androidx_100beta01 = "1.0.0-beta01"
+    const val constraintLayout = "2.1.2"
+    const val compose = "1.0.5"
+    const val composeActivity = "1.4.0"
     const val circleImageView = "3.1.0"
+    const val recyclerView = "1.0.0"
+    const val swipeRefreshLayout = "1.1.0"
     const val firebaseCore = "17.4.4"
     const val firebaseAnalytics = "18.0.0"
     const val firebaseCrashlytics = "17.2.1"
@@ -42,11 +44,11 @@ object Version {
     const val jacoco = "0.16.0"
     const val jodaTime = "2.10.6"
     const val picasso = "2.71828"
-    const val gradleVersion = "4.1.3"
+    const val gradleVersion = "7.0.3"
     const val googleServices = "4.3.3"
     const val ktx = "1.7.0"
     const val ktLint = "0.35.0"
-    const val kotlinVersion = "1.6.10"
+    const val kotlinVersion = "1.5.31"
     const val legacySupport = "1.0.0"
     const val dokkaVeresion = "0.9.18"
     const val glide = "4.12.0"
@@ -159,6 +161,15 @@ object Dependencies {
         const val legacySupport = "androidx.legacy:legacy-support-v4:${Version.legacySupport}"
         const val navigation = "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
         const val navigationUI = "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
+    }
+
+    object Compose {
+        const val composeUi = "androidx.compose.ui:ui:${Version.compose}"
+        const val composeMaterial = "androidx.compose.material:material:${Version.compose}"
+        const val composeUIToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Version.compose}"
+        const val composeActivity = "androidx.activity:activity-compose:${Version.composeActivity}"
+        const val composeUiTestJUnit4 = "androidx.compose.ui:ui-test-junit4:${Version.compose}"
+        const val composeTestUiTooling = "androidx.compose.ui:ui-tooling:${Version.compose}"
     }
 
     object Room {

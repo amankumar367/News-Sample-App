@@ -3,10 +3,9 @@ import dependencies.Dependencies
 import dependencies.Version
 
 buildscript {
-    ext.kotlin_version = Version.kotlinVersion
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath Dependencies.ClassPaths.gradleClasspath
@@ -20,7 +19,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
