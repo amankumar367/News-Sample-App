@@ -16,7 +16,7 @@ object BindingUtils {
             originalUrl = String.format(iconUrl, Uri.parse(articleUrl).authority)
         }
         Glide.with(imageView)
-                .load(url)
+                .load(originalUrl)
                 .into(imageView)
     }
 
