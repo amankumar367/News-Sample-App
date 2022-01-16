@@ -8,4 +8,7 @@
 
     <string name="no_data_found">No data found</string>
     <string name="title_activity_empty_compose">EmptyComposeActivity</string>
+
+    <string name="show_less">Show less</string>
+    <string name="show_more">Show more</string>
 </resources>
