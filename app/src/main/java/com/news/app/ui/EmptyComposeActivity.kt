@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
@@ -58,10 +60,12 @@ fun MyApp() {
 
 @Composable
 fun Greetings(
-    names: List<String> = listOf("World", "Compose", "Aman", "Vaibhav", "Jayesh", "JK")
+    names: List<String> = List(1000) { "$it" }
 ) {
-    Column(modifier = Modifier.padding(vertical = 4.dp)) {
-        names.forEach { Greeting(name = it) }
+    LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
+        items(items = names) { name ->
+            Greeting(name = name)
+        }
     }
 }
 
@@ -113,18 +117,19 @@ fun OnboardingScreen(onContinueClicked: () -> Unit) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    NewsSampleAppTheme {
-        Greetings()
-    }
-}
 
 @Preview(showBackground = true, widthDp = 320, heightDp = 320)
 @Composable
 fun OnboardingPreview() {
     NewsSampleAppTheme {
         OnboardingScreen(onContinueClicked = { })
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    NewsSampleAppTheme {
+        Greetings()
     }
 }
