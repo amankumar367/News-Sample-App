@@ -15,7 +15,7 @@
     </a>
 </div>
 
-<div align="center">A simpe new appllication build with 100% Kotlin</div>
+<div align="center">A simple News Application build with 100% Kotlin</div>
 
 ## Requirement
 You should add api key to gradle.properties before build app.
