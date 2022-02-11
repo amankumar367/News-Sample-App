@@ -75,6 +75,7 @@ dependencies {
     implementation Dependencies.Compose.composeMaterial
     implementation Dependencies.Compose.composeUIToolingPreview
     implementation Dependencies.Compose.composeActivity
+    implementation Dependencies.Compose.coilCompose
     androidTestImplementation Dependencies.Compose.composeUiTestJUnit4
     debugImplementation Dependencies.Compose.composeTestUiTooling
 

@@ -14,6 +14,7 @@ object Version {
     const val constraintLayout = "2.1.2"
     const val compose = "1.0.5"
     const val composeActivity = "1.4.0"
+    const val coilCompose = "1.4.0"
     const val circleImageView = "3.1.0"
     const val recyclerView = "1.0.0"
     const val swipeRefreshLayout = "1.1.0"
@@ -170,6 +171,7 @@ object Dependencies {
         const val composeActivity = "androidx.activity:activity-compose:${Version.composeActivity}"
         const val composeUiTestJUnit4 = "androidx.compose.ui:ui-test-junit4:${Version.compose}"
         const val composeTestUiTooling = "androidx.compose.ui:ui-tooling:${Version.compose}"
+        const val coilCompose = "io.coil-kt:coil-compose:${Version.coilCompose}"
     }
 
     object Room {
