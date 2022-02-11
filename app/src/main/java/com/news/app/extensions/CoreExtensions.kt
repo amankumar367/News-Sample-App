@@ -32,3 +32,10 @@ fun getCurrentDate(): String {
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     return simpleDateFormat.format(c)
 }
+
+fun String.formatDate(): String {
+    return if (isNotBlank())
+        split("T")[0]
+    else
+        ""
+}
