@@ -2,7 +2,6 @@ package com.news.app.ui.articles
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.compose.setContent
@@ -25,6 +24,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
@@ -32,22 +32,14 @@ import coil.compose.rememberImagePainter
 import com.news.app.R
 import com.news.app.data.models.Article
 import com.news.app.extensions.formatDate
+import com.news.app.extensions.getImageUrl
 import com.news.app.ui.theme.NewsSampleAppTheme
+import com.news.app.ui.theme.gray200
 import com.news.app.ui.theme.transparentBlack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ArticleDetailsActivity : AppCompatActivity() {
-
-    companion object {
-        private const val BUNDLE_ARTICLE = "article"
-        fun launch(context: Activity, article: Article) {
-            val intent = Intent(context, ArticleDetailsActivity::class.java)
-            intent.putExtra(BUNDLE_ARTICLE, article)
-            context.startActivity(intent)
-            context.overridePendingTransition(R.anim.slide_up_animation, R.anim.fade_exit_transition)
-        }
-    }
 
     private lateinit var article: Article
 
@@ -90,9 +82,11 @@ class ArticleDetailsActivity : AppCompatActivity() {
                         .fillMaxSize()
                 )
 
-                Box(modifier = Modifier
-                    .matchParentSize()
-                    .background(gradient))
+                Box(
+                    modifier = Modifier
+                        .matchParentSize()
+                        .background(gradient)
+                )
 
                 IconButton(
                     onClick = { onBackPressed() },
@@ -151,7 +145,7 @@ class ArticleDetailsActivity : AppCompatActivity() {
     private fun ArticleDescription(description: String, modifier: Modifier = Modifier) {
         Text(
             text = description,
-            color = Color.White,
+            color = gray200,
             style = typography.body2,
             modifier = modifier
         )
@@ -176,16 +170,9 @@ class ArticleDetailsActivity : AppCompatActivity() {
                 color = Color.White,
                 style = typography.body1,
                 modifier = Modifier.weight(1F),
+                textAlign = TextAlign.End
             )
         }
-    }
-
-
-    private fun getImageUrl(url: String?, articleUrl: String?): String {
-        return if (url == null) {
-            val iconUrl = "https://besticon-demo.herokuapp.com/icon?url=%s&size=80..120..200"
-            String.format(iconUrl, Uri.parse(articleUrl).authority)
-        } else url
     }
 
     @Preview
@@ -193,6 +180,17 @@ class ArticleDetailsActivity : AppCompatActivity() {
     fun DefaultPreview() {
         NewsSampleAppTheme {
             ArticleDetailsScreen()
+        }
+    }
+
+    companion object {
+        private const val BUNDLE_ARTICLE = "article"
+
+        fun launch(context: Activity, article: Article) {
+            val intent = Intent(context, ArticleDetailsActivity::class.java)
+            intent.putExtra(BUNDLE_ARTICLE, article)
+            context.startActivity(intent)
+            context.overridePendingTransition(R.anim.slide_up_animation, R.anim.fade_exit_transition)
         }
     }
 

@@ -2,11 +2,12 @@ package com.news.app.ui.articles
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.news.app.data.models.Article
 import com.news.app.data.repo.ArticleRepository
+import com.news.app.extensions.RequestState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,11 +16,8 @@ class ArticleViewModel @Inject constructor(
     private val articleRepo: ArticleRepository
 ) : ViewModel() {
 
-    private var _articleState = MutableSharedFlow<ArticleState>(
-        replay = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    val articleState: SharedFlow<ArticleState> = _articleState
+    private val _articleState = MutableStateFlow<RequestState<List<Article>, Exception>>(RequestState.Loading)
+    val articleState: StateFlow<RequestState<List<Article>, Exception>> = _articleState
 
     fun getArticles(
         query: String?,
@@ -28,12 +26,11 @@ class ArticleViewModel @Inject constructor(
         fetchFromNetwork: Boolean = false
     ) {
         viewModelScope.launch {
-            if (fetchFromNetwork.not()) _articleState.emit(ArticleState.Loading)
             try {
                 val articles = articleRepo.fetchArticles(query, from, sortBy, fetchFromNetwork)
-                _articleState.emit(ArticleState.Success(articles))
+                _articleState.value = RequestState.Success(articles)
             } catch (exception: Exception) {
-                _articleState.emit(ArticleState.Error(exception))
+                _articleState.value = RequestState.Error(exception)
             }
         }
     }

@@ -23,5 +23,7 @@ val orange700 = Color(0xFFba000d)
 
 val gray = Color(0xFF464646)
 val lightGray = Color(0xFFA4A8AD)
+val gray200 = Color(0xFFBABABA)
+val pink = Color(0xFFE44248)
 
 val transparentBlack = Color(0x40000000)
