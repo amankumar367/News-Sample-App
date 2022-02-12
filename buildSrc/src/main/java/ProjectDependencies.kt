@@ -172,6 +172,8 @@ object Dependencies {
         const val composeUiTestJUnit4 = "androidx.compose.ui:ui-test-junit4:${Version.compose}"
         const val composeTestUiTooling = "androidx.compose.ui:ui-tooling:${Version.compose}"
         const val coilCompose = "io.coil-kt:coil-compose:${Version.coilCompose}"
+        const val composeRuntime = "androidx.compose.runtime:runtime:${Version.compose}" // Compose  Runtime  => has getValue , setValue delegates and mutableStateOf APIs
+        const val composeRuntimeLiveData = "androidx.compose.runtime:runtime-livedata:${Version.compose}" // Compose Runtime LiveDate => Has observeAsState
     }
 
     object Room {

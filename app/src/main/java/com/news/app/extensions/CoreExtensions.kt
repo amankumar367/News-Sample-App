@@ -1,5 +1,6 @@
 package com.news.app.extensions
 
+import android.net.Uri
 import java.io.InterruptedIOException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -38,4 +39,11 @@ fun String.formatDate(): String {
         split("T")[0]
     else
         ""
+}
+
+fun getImageUrl(url: String?, articleUrl: String?): String {
+    return if (url == null) {
+        val iconUrl = "https://besticon-demo.herokuapp.com/icon?url=%s&size=80..120..200"
+        String.format(iconUrl, Uri.parse(articleUrl).authority)
+    } else url
 }
