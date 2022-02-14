@@ -1,9 +1,9 @@
 <h1 align="center">News-Sample-App</h1>
 
 <div align="center">
-    <img src = "https://github.com/amankumar367/News-Sample-App/blob/master/media/1643899024417.jpg" width = "260px"/>
-    <img src = "https://github.com/amankumar367/News-Sample-App/blob/master/media/1643899024414.jpg" width = "260px"/>
-    <img src = "https://github.com/amankumar367/News-Sample-App/blob/master/media/1643899024408.jpg" width = "260px"/>
+    <img src = "https://github.com/amankumar367/News-Sample-App/blob/master/media/Compose_1.png" width = "260px"/>
+    <img src = "https://github.com/amankumar367/News-Sample-App/blob/master/media/Compose_2.png" width = "260px"/>
+    <img src = "https://github.com/amankumar367/News-Sample-App/blob/master/media/Compose_3.png" width = "260px"/>
 </div>
 
 <div align="center">
@@ -18,10 +18,10 @@
 <div align="center">A simple News Application build with 100% Kotlin</div>
 
 ## Requirement
-You should add api key to gradle.properties before build app.
+You should add api key to `gradle.properties` before build app.
 `NEWS_API_KEY="YOURS_API_KEY"`
 
-## Teck Stack
+## Tech Stack
 
 * Kotlin
 * Jetpack Compose
