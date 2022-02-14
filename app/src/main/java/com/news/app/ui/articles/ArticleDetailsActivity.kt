@@ -126,7 +126,7 @@ class ArticleDetailsActivity : AppCompatActivity() {
             ArticleAuthorAndPublishTime(article.author.orEmpty(), article.publishedAt.orEmpty())
             Spacer(modifier = Modifier.height(10.dp))
             ArticleDescription(article.description.orEmpty())
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(26.dp))
         }
     }
 
