@@ -16,7 +16,7 @@ class ArticleViewModel @Inject constructor(
     private val articleRepo: ArticleRepository
 ) : ViewModel() {
 
-    private val _articleState = MutableStateFlow<RequestState<List<Article>, Exception>>(RequestState.Loading)
+    private val _articleState = MutableStateFlow<RequestState<List<Article>, Exception>>(RequestState.Idle)
     val articleState: StateFlow<RequestState<List<Article>, Exception>> = _articleState
 
     fun getArticles(
@@ -26,6 +26,7 @@ class ArticleViewModel @Inject constructor(
         fetchFromNetwork: Boolean = false
     ) {
         viewModelScope.launch {
+            _articleState.value = RequestState.Loading
             try {
                 val articles = articleRepo.fetchArticles(query, from, sortBy, fetchFromNetwork)
                 _articleState.value = RequestState.Success(articles)

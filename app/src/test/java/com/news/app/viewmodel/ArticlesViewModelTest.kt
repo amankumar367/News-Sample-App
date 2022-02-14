@@ -6,7 +6,6 @@ import com.news.app.data.models.Article
 import com.news.app.factory.articles.ArticleFactory
 import com.news.app.data.repo.ArticleRepositoryImp
 import com.news.app.scheduler.RxJavaTestScheduler
-import com.news.app.ui.articles.ArticleState
 import com.news.app.ui.articles.ArticleViewModel
 import io.reactivex.Single
 import org.junit.Before
